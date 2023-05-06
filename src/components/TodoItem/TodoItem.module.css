@@ -1,0 +1,15 @@
+.todoItem {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
+}
+.todoItem__content {
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+.todoItem__content_done {
+    color: #999;
+    text-decoration: line-through;
+}
