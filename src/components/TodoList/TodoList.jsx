@@ -1,14 +1,26 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { todoFilterSelector, todoFilteredSelector, todoSelector } from '../../store/reducers/selectors/todo'
 import TodoItem from '../TodoItem/TodoItem'
 import s from './TodoList.module.css'
+import { useGetAllTodosQuery } from '../../services/todo'
 function TodoList() {
-  const todos = useSelector(todoSelector);
-  const filteredTodos = useSelector(todoFilteredSelector)
+  const {data, isError, isLoading} = useGetAllTodosQuery()
+
+
+  if (isLoading) {
+    return <p className={s.message}>Загрузка...</p>
+  }
+  if (isError) {
+    return <p className={s.message}>{isError.message}</p>
+  }
+
+  if (!isLoading && !data?.length) {
+    return <p className={s.message}>Список задач пуст</p>
+  }
+ 
   return (
+      
     <div className={s.todoList}>
-      {filteredTodos.map((todo) => <TodoItem key={todo.id} {...todo}/>)}
+      {data.map((todo) => <TodoItem key={todo.id} {...todo}/>)}
     </div>
   )
 }

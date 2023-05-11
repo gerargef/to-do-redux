@@ -1,6 +1,14 @@
 .todoList {
+    padding-top: 30px;
+    padding-bottom: 30px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.message {
     padding-top: 30px;
+    color: white;
+    font-size: 24px;
+    text-align: center;
 }
